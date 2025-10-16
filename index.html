@@ -35,6 +35,10 @@ body {
   gap:30px;
   box-shadow:2px 0 15px rgba(0,0,0,0.4);
   z-index: 999;
+  transition: transform 0.3s ease;
+}
+.sidebar.hidden {
+  transform: translateX(-100%);
 }
 @keyframes gradientBG {
   0% {background-position:0% 50%;}
@@ -79,6 +83,38 @@ body {
   margin-right:10px;
 }
 
+/* Hamburger Icon */
+.menu-icon {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 1.8rem;
+  color: #000;
+  cursor: pointer;
+  z-index: 1001;
+}
+@media(max-width:1024px){
+  .sidebar {
+    position: fixed;
+    top:0; left:0;
+    width: 250px;
+    height: 100%;
+    padding:20px;
+    transform: translateX(-100%);
+  }
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  .main {
+    margin-left:0;
+    width:100%;
+  }
+  /* Show menu icon on small screens */
+  .menu-icon {
+    display: block;
+  }
+}
 /* Main content area */
 .main {
   margin-left:300px;
@@ -88,12 +124,6 @@ body {
   width:calc(100% - 300px);
 }
 @media(max-width:1024px){
-  .sidebar {
-    position:relative;
-    width:100%;
-    height:auto;
-    padding:20px;
-  }
   .main {
     margin-left:0;
     width:100%;
@@ -260,14 +290,23 @@ footer {
 }
 @media(max-width:1024px){
   .sidebar {
-    position:relative;
-    width:100%;
-    height:auto;
+    position: fixed;
+    top: 0; left: 0;
+    width: 250px;
+    height: 100%;
     padding:20px;
+    transform: translateX(-100%);
+  }
+  .sidebar.show {
+    transform: translateX(0);
   }
   .main {
     margin-left:0;
     width:100%;
+  }
+  /* Show menu icon on small screens */
+  .menu-icon {
+    display: block;
   }
 }
 @media(max-width:768px){
@@ -279,14 +318,18 @@ footer {
   footer {
     padding:30px 10px;
   }
-  /* Make header background content more compact if needed */
 }
 </style>
 </head>
 <body>
 
+<!-- Hamburger Menu Icon for small screens -->
+<div class="menu-icon" id="menuToggle">
+  <i class="fas fa-bars"></i>
+</div>
+
 <!-- Sidebar Navigation -->
-<aside class="sidebar">
+<aside class="sidebar" id="sidebar">
   <div class="logo">
     <i class="fas fa-building"></i>HOSTELHUB
   </div>
@@ -360,6 +403,21 @@ footer {
 
 <!-- Scripts -->
 <script>
+// Toggle sidebar menu on small screens
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+
+menuToggle.onclick = () => {
+  sidebar.classList.toggle('show');
+};
+
+// Optional: close the menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+    sidebar.classList.remove('show');
+  }
+});
+
 // Search functionality
 document.getElementById('searchBtn').onclick = () => {
   const query = document.getElementById('searchInput').value.trim();
