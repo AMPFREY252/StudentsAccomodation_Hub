@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HostelHub Homepage</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap" />
+<!-- Font Awesome CDN for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+/* Reset & Basic Styles */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Roboto', sans-serif;
+  background:#f3ecec;
+  color:#222;
+  overflow-x:hidden;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Sidebar */
+.sidebar {
+  position:fixed;
+  top:0; left:0;
+  width:300px;
+  height:100vh;
+  background: #00008B; /* Deep blue color */
+  padding:30px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:30px;
+  box-shadow:2px 0 15px rgba(0,0,0,0.4);
+  z-index: 999;
+}
+@keyframes gradientBG {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+.logo {
+  font-family:'Poppins', sans-serif;
+  font-size:2.6rem;
+  font-weight:800;
+  letter-spacing:1.2px;
+  display:flex;
+  align-items:center;
+}
+.logo i {
+  margin-right:10px;
+  font-size:2rem;
+}
+.nav-menu {
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  width:100%;
+}
+.nav-menu li a {
+  color:#fff;
+  font-weight:500;
+  font-size:1.1rem;
+  padding:10px 15px;
+  display:flex;
+  align-items:center;
+  border-radius:8px;
+  transition:background 0.3s, transform 0.2s;
+  text-decoration:none;
+}
+.nav-menu li a:hover {
+  background:rgba(255,255,255,0.2);
+  transform:translateX(3px);
+}
+.nav-menu li a i {
+  margin-right:10px;
+}
+
+/* Main content area */
+.main {
+  margin-left:340px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  width:calc(100% - 340px);
+}
+
+/* Header background */
+.header-background {
+  position: relative;
+  background-image: url('kihumurohallls.png');
+  background-size: cover;
+  background-position: center;
+  height:100vh;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  text-align:center;
+  padding:20px;
+}
+.header-background::after {
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  background:rgba(0,0,0,0.4);
+}
+.header-content {
+  position: relative;
+  z-index:1;
+}
+.header-content h1 {
+  font-family:'Poppins', sans-serif;
+  font-size:3.5rem;
+  font-weight:700;
+  margin-bottom:10px;
+}
+.header-content p {
+  font-size:1.4rem;
+  font-weight:500;
+  max-width:800px;
+  margin:0 auto;
+}
+
+/* Welcome section fixed at top and full width */
+.welcome-section {
+  position: fixed; /* Fixed to stay on top */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  background: green;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color:#fff;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.welcome-logo {
+  position: absolute;
+  top: 20px;
+  left: 10px; /* 10px from left margin */
+  width:60px;
+  height:60px;
+  border-radius:15px;
+  overflow:hidden;
+}
+.welcome-logo img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.welcome-section h2 {
+  font-family:'Poppins', sans-serif;
+  font-weight:700;
+  font-size:1.8rem;
+  margin-bottom:8px;
+}
+.welcome-section p {
+  font-family:'Poppins', sans-serif;
+  font-weight:500;
+  font-size:1rem;
+  margin-bottom:12px;
+}
+.search-wrapper {
+  display:flex;
+  align-items:center;
+  margin-top:10px;
+  width:100%;
+  max-width:600px;
+  padding:0 10px;
+}
+.search-input {
+  flex:1;
+  padding:12px 20px;
+  border-radius:30px;
+  border:none;
+  outline:none;
+  font-size:1.2rem;
+  background:linear-gradient(90deg,#fff,#fffbe6);
+  box-shadow:0 0 10px #ff6f61, 0 0 20px #ffb347;
+}
+.search-btn {
+  background:none;
+  border:none;
+  margin-left:10px;
+  cursor:pointer;
+}
+.search-btn svg {
+  width:24px;
+  height:24px;
+  stroke:#452B1F;
+}
+
+/* Footer styles */
+footer {
+  width:100%;
+  background: linear-gradient(135deg,hsl(44, 95%, 70%), #ffb347, hsl(44, 95%, 70%), hsl(44, 95%, 70%));
+  background-size:400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: green;
+  text-align: center;
+  padding:50px 20px;
+  font-size:1.1rem;
+  font-family:'Poppins', sans-serif;
+  font-weight:600;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.footer-info {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  gap:30px;
+  margin-bottom:20px;
+}
+.footer-column {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.footer-column i {
+  font-size:2rem;
+  margin-bottom:8px;
+}
+.footer-column a {
+  color:#fff;
+  font-size:1rem;
+  text-decoration:none;
+}
+.social-icons {
+  display:flex;
+  gap:15px;
+}
+.social-icons a {
+  color:#fff;
+  font-size:1.5rem;
+  transition:color 0.3s;
+}
+.social-icons a:hover {
+  color:#ffb84d;
+}
+@media(max-width:768px){
+  .sidebar { position:static; width:100%; height:auto; }
+  .main { margin-left:0; width:100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar Navigation -->
+<aside class="sidebar">
+ <div class="logo">
+    <i class="fas fa-building"></i>HOSTELHUB
+  </div>
+  <ul class="nav-menu">
+    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+    <li><a href="terms.html"><i class="fas fa-file-contract"></i> Terms</a></li>
+    <li><a href="bookings.html"><i class="fas fa-book-open"></i> Bookings</a></li>
+    <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+    <li><a href="help.html"><i class="fas fa-question-circle"></i> Help</a></li>
+    <li><a href="hostels.html"><i class="fas fa-hotel"></i> Hostels</a></li>
+    <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+    <li><a href="admin-login.html"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+    <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+  </ul>
+</aside>
+
+<!-- Main Content -->
+<main class="main">
+
+  <!-- Full Page Header -->
+  <section class="header-background">
+    <div class="header-content">
+      <h1>Discover Your Perfect Hostel</h1>
+      <p>Find the best hostels with comfort, security, and convenience. Start your journey today!</p>
+    </div>
+  </section>
+
+  <!-- Fixed Welcome overlay at top -->
+  <div class="welcome-section" id="welcome">
+    <div class="welcome-logo">
+      <img src="Minimalist_Real_Estate_Logo-removebg-preview (1).png" alt="HostelHub Logo" />
+    </div>
+    <h2>Welcome to Hostel Hub</h2>
+    <p>Your Comfortable & Safe Stay Awaits! Experience Comfort, Security, and Convenience Today!</p>
+    <div class="search-wrapper">
+      <input class="search-input" id="searchInput" type="search" placeholder="Search hostels, locations, types..." />
+      <button class="search-btn" id="searchBtn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#452B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-info">
+      <div class="footer-column">
+        <i class="fas fa-phone"></i>
+        <a href="tel:+256773252005">Call Us: +256773252005</a>
+      </div>
+      <div class="footer-column">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:ampfreytukwasibwe@gmail.com">Email: ampfreytukwasibwe@gmail.com</a>
+      </div>
+      <div class="footer-column">
+        <i class="fas fa-map-marker-alt"></i>
+        <a href="https://www.google.com/maps/search/mbarara,+City,+Country" target="_blank" rel="noopener">mbarara, Uganda</a>
+      </div>
+    </div>
+    <div class="social-icons">
+      <a href="https://facebook.com/yourpage" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://wa.me/+256773252005" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy; 2025 HostelHub. Glowing with light ✨</p>
+  </footer>
+</main>
+
+<!-- Scripts -->
+<script>
+// Search functionality
+document.getElementById('searchBtn').onclick = () => {
+  const query = document.getElementById('searchInput').value.trim();
+  if (query) {
+    window.location.href='hostels.html?search=' + encodeURIComponent(query);
+  } else {
+    alert('Please enter a search term.');
+  }
+};
+document.getElementById('searchInput').addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    e.preventDefault();
+    document.getElementById('searchBtn').click();
+  }
+});
+</script>
+</body>
+</html>

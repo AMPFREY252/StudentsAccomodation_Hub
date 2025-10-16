@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap');
+
+/* Shared gradient animation for backgrounds */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles for consistency */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #f9f9f9; /* Light background for entire app */
+    color: #222;
+}
+
+/* Header styles matching homepage */
+.header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(-45deg, #5018d1, #a8babe, #8277e7, #0d63d3);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* Header title styles */
+.header-center h1, .header-top {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+/* Header icon image styles with hover effects */
+.header-icon-img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.18s, box-shadow 0.18s;
+    cursor: pointer;
+}
+.header-icon-img:hover {
+    transform: scale(1.08) rotate(-6deg);
+    box-shadow: 0 4px 18px rgba(255, 255, 255, 0.3);
+}
+
+/* Footer styles matching homepage */
+.footer, footer {
+    background: linear-gradient(45deg, #3b4be0, #7d98aa, #9c95e2, #0d54be);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #fff;
+    text-align: center;
+    padding: 24px 0;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.6);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/* Subtle glow effect on media (images, cards) */
+.glow-media {
+    border-radius: 18px;
+    box-shadow: 0 0 30px rgba(255, 200, 80, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glow-media:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 50px rgba(5, 66, 180, 0.45);
+}
+
+/* Common button styles */
+button, .btn {
+    background-color: #452B1F;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+button:hover, .btn:hover {
+    background-color: #ff4d4d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Links styling for consistency */
+a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+}
+a:hover {
+    color: #ffb84d;
+}
+
+/* Additional styles for layout and responsiveness */
+@media(max-width: 768px){
+    /* Make header sticky and full width on mobile */
+    .header-row {
+        flex-direction: column;
+        align-items: center;
+        padding: 12px 20px;
+    }
+    /* Adjust footer if needed */
+    .footer {
+        padding: 16px 10px;
+    }
+}

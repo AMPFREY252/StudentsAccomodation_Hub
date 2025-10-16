@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Help & FAQs - HostelHub</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap" />
+<!-- Font Awesome CDN for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+/* Reset & Basic Styles */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Roboto', sans-serif;
+  background:#f3ecec;
+  color:#222;
+  overflow-x:hidden;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Sidebar Styles (from homepage) */
+.sidebar {
+  position:fixed;
+  top:0; left:0;
+  width:250px;
+  height:100vh;
+  background: #00008B; /* Deep blue color */
+  padding:30px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:30px;
+  box-shadow:2px 0 15px rgba(0,0,0,0.4);
+  z-index: 999;
+}
+@keyframes gradientBG {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+.logo {
+  font-family:'Poppins', sans-serif;
+  font-size:2.2rem;
+  font-weight:800;
+  letter-spacing:1.2px;
+  display:flex;
+  align-items:center;
+  color:#fff;
+}
+.logo i {
+  margin-right:10px;
+  font-size:1.8rem;
+}
+.nav-menu {
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  width:100%;
+}
+.nav-menu li a {
+  color:#fff;
+  font-weight:500;
+  font-size:1.1rem;
+  padding:10px 15px;
+  display:flex;
+  align-items:center;
+  border-radius:8px;
+  transition:background 0.3s, transform 0.2s;
+  text-decoration:none;
+}
+.nav-menu li a:hover {
+  background:rgba(255,255,255,0.2);
+  transform:translateX(3px);
+}
+.nav-menu li a i {
+  margin-right:10px;
+}
+
+/* Main content area (next to sidebar) */
+.main {
+  margin-left:250px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  width:calc(100% - 250px);
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* FAQ Content Box styled similarly to homepage */
+.faq-section {
+  max-width: 700px;
+  margin: 0 auto 32px auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(69,43,31,0.10);
+  padding: 36px 32px;
+}
+.faq-section h2 {
+  text-align: center;
+  color: #452B1F;
+  margin-bottom: 18px;
+}
+.faq-section h3 {
+  color: #333; /* Changed to neutral, no red */
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+.faq-section ol, .faq-section ul {
+  margin: 0 0 18px 0;
+  padding-left: 22px;
+}
+.faq-section li {
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+.faq-section ul li {
+  background: #f7e7e7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+.faq-section ul li b {
+  color: #222; /* Neutral color, no red */
+}
+.faq-section ol li b {
+  color: #222; /* Neutral color, no red */
+}
+
+/* Footer styles (from homepage style) */
+footer {
+  width: 100%;
+  background: linear-gradient(135deg, hsl(44, 95%, 70%), #ffb347, hsl(44, 95%, 70%), hsl(44, 95%, 70%));
+  background-size:400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+  text-align: center;
+  padding:50px 20px;
+  font-size:1.1rem;
+  font-family:'Poppins', sans-serif;
+  font-weight:600;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-top: 40px;
+}
+.footer-info {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  gap:30px;
+  margin-bottom:20px;
+}
+.footer-column {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.footer-column i {
+  font-size:2rem;
+  margin-bottom:8px;
+}
+.footer-column a {
+  color:#fff;
+  font-size:1rem;
+  text-decoration:none;
+}
+.social-icons {
+  display:flex;
+  gap:15px;
+}
+.social-icons a {
+  color:#fff;
+  font-size:1.5rem;
+  transition:color 0.3s;
+}
+.social-icons a:hover {
+  color:#ffb84d;
+}
+
+/* Responsive adjustments */
+@media(max-width:768px){
+  .sidebar {
+    position:static;
+    width:100%;
+    height:auto;
+    box-shadow: none;
+  }
+  .main {
+    margin-left:0;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar Navigation (from homepage style) -->
+<aside class="sidebar">
+  <div class="logo">
+    <i class="fas fa-building"></i>HOSTELHUB
+  </div>
+  <ul class="nav-menu">
+    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+    <li><a href="terms.html"><i class="fas fa-file-contract"></i> Terms</a></li>
+    <li><a href="hostels.html"><i class="fas fa-hotel"></i> Hostels</a></li>
+    <li><a href="bookings.html"><i class="fas fa-book-open"></i> Bookings</a></li>
+    <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+    <li><a href="help.html"><i class="fas fa-question-circle"></i> Help</a></li>
+    <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+    <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+  </ul>
+</aside>
+
+<!-- Main Content -->
+<main class="main">
+
+  <!-- Help & FAQs Content (styled similar to homepage content box) -->
+  <div class="faq-section">
+    <h2>Help & FAQs</h2>
+
+    <h3>How to Use Hostelhub</h3>
+    <ol>
+      <li><b>Browse Hostels:</b> On the home page, use the search bar or dashboard menu to find available hostels.</li>
+      <li><b>View Hostel Details:</b> Click on any hostel to see its details, including location, distance, price, and room type.</li>
+      <li><b>Book a Hostel:</b> Click the "Book" button on your preferred hostel. You must be logged in to book.</li>
+      <li><b>Login/Register:</b> If you don’t have an account, register first. Use your credentials to log in.</li>
+      <li><b>Bookings & Payments:</b> After booking, go to the Bookings page to pay using mobile money options. Follow the instructions to complete payment.</li>
+      <li><b>Real-Time Updates:</b> If hostels are added, updated, or removed by the admin, your hostel list will update instantly. You’ll see a notification at the top of the page when this happens.</li>
+      <li><b>Contact & Support:</b> Use the Contact page to send messages to the admin. You’ll receive replies via your email, sometimes with downloadable files.</li>
+      <li><b>Profile & History:</b> Access your profile to view your booking and payment history, and to change your password.</li>
+      <li><b>Dashboard Menu:</b> Use the dashboard icon (top left) to access all pages and features.</li>
+      <li><b>Logout:</b> Use the dashboard menu to log out when finished.</li>
+    </ol>
+
+    <h3>Frequently Asked Questions</h3>
+    <ul>
+      <li><b>Q:</b> Why can’t I book a hostel?<br><b>A:</b> You must be logged in to book. Please log in or register.</li>
+      <li><b>Q:</b> How do I know my booking was successful?<br><b>A:</b> After booking, you’ll see it listed on your Bookings page. You can then proceed to payment.</li>
+      <li><b>Q:</b> How do I pay for my booking?<br><b>A:</b> Go to the Bookings page and click "Pay". Follow the mobile money instructions.</li>
+      <li><b>Q:</b> What if the hostel list changes while I’m browsing?<br><b>A:</b> The list will update automatically and you’ll see a notification.</li>
+      <li><b>Q:</b> How do I contact support?<br><b>A:</b> Use the Contact page. The admin will reply to your email.</li>
+      <li><b>Q:</b> Can I receive files from the admin?<br><b>A:</b> Yes, the admin can send you files via email with a download link.</li>
+      <li><b>Q:</b> How do I update my profile?<br><b>A:</b> Go to your profile page from the dashboard menu.</li>
+      <li><b>Q:</b> How do I log out?<br><b>A:</b> Use the dashboard menu and click "Logout".</li>
+      <li><b>Q:</b> What if I forget my password?<br><b>A:</b> Use the password change option in your profile. If you need more help, contact support.</li>
+      <li><b>Q:</b> What browsers are supported?<br><b>A:</b> Hostelhub works best on modern browsers like Chrome, Firefox, and Edge.</li>
+    </ul>
+  </div>
+
+  <!-- Footer (same style as homepage) -->
+  <footer>
+    <div class="footer-info">
+      <div class="footer-column">
+        <i class="fas fa-phone"></i>
+        <a href="tel:+256773252005">Call Us: +256773252005</a>
+      </div>
+      <div class="footer-column">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:ampfreytukwasibwe@gmail.com">Email: ampfreytukwasibwe@gmail.com</a>
+      </div>
+      <div class="footer-column">
+        <i class="fas fa-map-marker-alt"></i>
+        <a href="https://www.google.com/maps/search/mbarara,+City,+Country" target="_blank" rel="noopener">mbarara, Uganda</a>
+      </div>
+    </div>
+    <div class="social-icons">
+      <a href="https://facebook.com/yourpage" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://wa.me/+256773252005" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy; 2025 HostelHub. Glowing with light ✨</p>
+  </footer>
+</main>
+</body>
+</html>

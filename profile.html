@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>User Profile - Hostelhub</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap" />
+<!-- Font Awesome CDN for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+/* Reset & Basic Styles */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Roboto', sans-serif;
+  background:#f3ecec;
+  color:#222;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+/* Sidebar similar to homepage */
+.sidebar {
+  position:fixed;
+  top:0; left:0;
+  width:300px;
+  height:100vh;
+  background: #00008B; /* Deep blue color */
+  padding:30px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:30px;
+  box-shadow:2px 0 15px rgba(0,0,0,0.4);
+  z-index: 999;
+}
+@keyframes gradientBG {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+.logo {
+  font-family:'Poppins', sans-serif;
+  font-size:2.6rem;
+  font-weight:800;
+  letter-spacing:1.2px;
+  display:flex;
+  align-items:center;
+}
+.logo i {
+  margin-right:10px;
+  font-size:2rem;
+}
+.nav-menu {
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  width:100%;
+}
+.nav-menu li a {
+  color:#fff;
+  font-weight:500;
+  font-size:1.1rem;
+  padding:10px 15px;
+  display:flex;
+  align-items:center;
+  border-radius:8px;
+  transition:background 0.3s, transform 0.2s;
+  text-decoration:none;
+}
+.nav-menu li a:hover {
+  background:rgba(255,255,255,0.2);
+  transform:translateX(3px);
+}
+.nav-menu li a i {
+  margin-right:10px;
+}
+
+/* Main content area */
+.main {
+  margin-left:340px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  width:calc(100% - 340px);
+  padding:20px;
+  margin-top:60px; /* space for header if needed */
+}
+
+/* Header styles similar to homepage's header background if needed, here simple header */
+.header {
+  font-family:'Poppins', sans-serif;
+  font-size:2.4rem;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+/* Profile content styles */
+.profile-container {
+  background:#fff;
+  border-radius:16px;
+  padding:30px;
+  box-shadow:0 2px 16px rgba(0,0,0,0.07);
+}
+.profile-title {
+  font-family:'Poppins', sans-serif;
+  font-size:1.8rem;
+  margin-bottom:20px;
+  color:#452B1F;
+}
+.profile-info {
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+#profileAvatar {
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background: linear-gradient(135deg,#ffb84d,#452B1F);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:2rem;
+  font-weight:700;
+  color:#fff;
+}
+#profileUsername {
+  font-size:1.2rem;
+  font-weight:600;
+}
+.payments-section {
+  margin-top:30px;
+}
+.payments-section h3 {
+  font-family:'Poppins', sans-serif;
+  font-size:1.4rem;
+  margin-bottom:10px;
+  color:#452B1F;
+}
+#profilePayments {
+  max-height:300px;
+  overflow:auto;
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+th, td {
+  border:1px solid #ddd;
+  padding:10px;
+  text-align:left;
+}
+th {
+  background:#452B1F;
+  color:#fff;
+}
+tr:nth-child(even) {
+  background:#f2f2f2;
+}
+.btn-slip {
+  padding:8px 12px;
+  background:#452B1F;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:0.9rem;
+}
+.btn-slip:hover {
+  background:#ff4d4d;
+}
+/* Conversation section styles */
+.conversation-section {
+  margin-top:40px;
+}
+.conversation-section h3 {
+  font-family:'Poppins', sans-serif;
+  font-size:1.4rem;
+  margin-bottom:10px;
+  color:#452B1F;
+}
+#conversationContainer {
+  max-height:260px;
+  overflow:auto;
+  border:1px solid #eee;
+  padding:10px;
+  border-radius:8px;
+  background:#fffbe6;
+}
+#complaintInput {
+  flex:1;
+  padding:8px 12px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  outline:none;
+}
+#sendComplaintBtn {
+  padding:8px 16px;
+  background:#452B1F;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  margin-left:8px;
+  cursor:pointer;
+}
+#sendComplaintBtn:hover {
+  background:#ff4d4d;
+}
+#clearConversationBtn {
+  margin-top:8px;
+  padding:6px 12px;
+  background:#ff4d4d;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+#clearConversationBtn:hover {
+  background:#c0392b;
+}
+/* Stars rating */
+#ratingStars {
+  display:flex;
+  gap:6px;
+  align-items:center;
+  margin-top:10px;
+}
+.star-btn {
+  background:none;
+  border:none;
+  font-size:26px;
+  cursor:pointer;
+  transition:transform 0.12s ease, color 0.12s ease;
+}
+.star-btn:hover {
+  transform:scale(1.1);
+  color:#000;
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar same as homepage -->
+<aside class="sidebar">
+ <div class="logo">
+    <i class="fas fa-building"></i>HOSTELHUB
+  </div>
+  <ul class="nav-menu">
+    <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+    <li><a href="hostels.html"><i class="fas fa-hotel"></i> Available Hostels</a></li>
+    <li><a href="bookings.html"><i class="fas fa-book-open"></i> Bookings</a></li>
+    <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+    <li><a href="help.html"><i class="fas fa-question-circle"></i> Help</a></li>
+    <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+  </ul>
+</aside>
+
+<!-- Main Content -->
+<div class="main">
+  <div class="header">User Profile</div>
+  <div class="profile-container">
+    <div class="profile-title">User Profile</div>
+    <div class="profile-info">
+      <div id="profileAvatar"></div>
+      <div id="profileUsername"></div>
+    </div>
+
+    <!-- Payments table -->
+    <div class="payments-section">
+      <h3>Your Payments</h3>
+      <div id="profilePayments"></div>
+      <button class="btn-slip" id="viewAllSlipsBtn">View/Print All Slips</button>
+    </div>
+
+    <!-- Conversations -->
+    <div class="conversation-section">
+      <h3>Complaints / Conversations with Admin</h3>
+      <div id="conversationContainer"></div>
+      <div style="display:flex; margin-top:8px;">
+        <input id="complaintInput" placeholder="Write your message to admin..." />
+        <button id="sendComplaintBtn">Send</button>
+      </div>
+      <button id="clearConversationBtn">Clear Conversation</button>
+      <div style="margin-top:12px;">
+        <div style="margin-bottom:6px;font-weight:600;">Rate your experience</div>
+        <div id="ratingStars">
+          <button class="star-btn" data-star="1">☆</button>
+          <button class="star-btn" data-star="2">☆</button>
+          <button class="star-btn" data-star="3">☆</button>
+          <button class="star-btn" data-star="4">☆</button>
+          <button class="star-btn" data-star="5">☆</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+// Load user info
+const username = localStorage.getItem('loggedInUser');
+if(!username){ window.location.href='login.html'; }
+
+// Avatar setup
+const avatarDiv = document.getElementById('profileAvatar');
+const avatarUrl = localStorage.getItem('userAvatar');
+if(avatarUrl){
+  avatarDiv.style.background = `url(${avatarUrl}) center/cover no-repeat`;
+  avatarDiv.textContent='';
+} else {
+  avatarDiv.textContent= username[0].toUpperCase();
+}
+
+// Username display
+document.getElementById('profileUsername').textContent='Username: '+username;
+
+// Load payments
+function loadPayments() {
+  let payments = JSON.parse(localStorage.getItem('payments')||'[]');
+  payments=payments.filter(p=>p.user===username);
+  let html='';
+  if(payments.length===0){
+    html='<div style="color:#888;">No payments yet.</div>';
+  } else {
+    html = `<table>
+      <tr><th>Hostel</th><th>Total Paid</th><th>Price</th><th>Balance</th><th>Network</th><th>Number</th><th>Slip</th></tr>`;
+    payments.forEach((p,i)=>{
+      const hostelName = p.hostel || p.hostelName || '';
+      const totalPaid = payments.filter(pp => (pp.hostel || pp.hostelName || '')===hostelName)
+        .reduce((s,pp)=>s + (parseInt(pp.amount,10)||0),0);
+      const priceVal = parseInt(p.price,10)||0;
+      const balanceVal = Math.max(0, priceVal - totalPaid);
+      html+= `<tr>
+        <td>${hostelName}</td>
+        <td>${totalPaid}</td>
+        <td>${priceVal}</td>
+        <td>${balanceVal}</td>
+        <td>${p.network}</td>
+        <td>${p.number}</td>
+        <td><button class="btn-slip" onclick="showSlip(${i})">View Slip</button></td>
+      </tr>`;
+    });
+    html+='</table>';
+  }
+  document.getElementById('profilePayments').innerHTML=html;
+}
+
+// Show slip modal
+function showSlip(index){
+  let payments = JSON.parse(localStorage.getItem('payments')||'[]').filter(p=>p.user===username);
+  const p=payments[index];
+  if(!p) return;
+  alert('Implement slip modal as needed.');
+  // You can create a modal similar to the previous code to show details and QR code
+}
+
+// Send complaint
+document.getElementById('sendComplaintBtn').onclick = ()=>{
+  const txt = document.getElementById('complaintInput').value.trim();
+  if(!txt){ alert('Enter message'); return; }
+  let conv=JSON.parse(localStorage.getItem('conversations')||'[]');
+  let userConv = conv.find(c=>c.user===username);
+  if(!userConv){ userConv={user:username,messages:[]}; conv.push(userConv);}
+  userConv.messages.push({id:'m'+Date.now(),from:username,to:'admin',text:txt,ts:Date.now()});
+  localStorage.setItem('conversations', JSON.stringify(conv));
+  document.getElementById('complaintInput').value='';
+  alert('Message sent to admin.');
+  // Re-render messages if desired
+};
+
+// Clear conversation
+document.getElementById('clearConversationBtn').onclick=()=>{
+  if(confirm('Clear this conversation?')){
+    let conv=JSON.parse(localStorage.getItem('conversations')||'[]');
+    conv=conv.filter(c=>c.user!==username);
+    localStorage.setItem('conversations', JSON.stringify(conv));
+    alert('Conversation cleared.');
+  }
+};
+
+// Load conversations/messages
+function loadConversation() {
+  const conv=JSON.parse(localStorage.getItem('conversations')||'[]');
+  const userConv=conv.find(c=>c.user===username);
+  const container=document.getElementById('conversationContainer');
+  if(!userConv || !userConv.messages || userConv.messages.length===0){
+    container.innerHTML='<div style="color:#888;">No messages yet.</div>';
+  } else {
+    container.innerHTML=userConv.messages.map(m=>{
+      const align=(m.from==='admin')?'left':'right';
+      return `<div style="background:${(m.from==='admin')?'#fff':'#452B1F'}; color:${(m.from==='admin')?'#000':'#fff'}; padding:8px; border-radius:8px; margin-bottom:8px; max-width:70%; align-self:${align};">${m.text}</div>`;
+    }).join('');
+  }
+}
+loadConversation();
+
+// Rating stars
+function renderStars() {
+  const conv=JSON.parse(localStorage.getItem('conversations')||'[]');
+  const userConv=conv.find(c=>c.user===username);
+  const rating=userConv?.rating||0;
+  document.querySelectorAll('#ratingStars .star-btn').forEach(btn=>{
+    const s=parseInt(btn.dataset.star);
+    btn.textContent= s<=rating?'★':'☆';
+    btn.style.color= s<=rating?'#000':'#666';
+  });
+}
+document.querySelectorAll('#ratingStars .star-btn').forEach(btn=>{
+  btn.onclick=()=>{
+    const star=parseInt(btn.dataset.star);
+    let conv=JSON.parse(localStorage.getItem('conversations')||'[]');
+    let userConv=conv.find(c=>c.user===username);
+    if(!userConv){ userConv={user:username,messages:[]}; conv.push(userConv);}
+    userConv.rating=star;
+    localStorage.setItem('conversations', JSON.stringify(conv));
+    renderStars();
+    alert('Rating saved.');
+  };
+});
+renderStars();
+
+// On page load
+loadPayments();
+renderStars();
+</script>
+</body>
+</html>

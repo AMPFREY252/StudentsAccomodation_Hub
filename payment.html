@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Payment - Hostelhub</title>
+<style>
+  body { margin:0; font-family:'Segoe UI', Arial, sans-serif; background:#f9f9f9; color:#222; }
+  .container { max-width:1100px; margin:40px auto 180px auto; background:#fff; border-radius:16px; box-shadow:0 2px 16px rgba(0,0,0,0.07); padding:40px 30px; }
+  /* Header styles with no icons, just centered title */
+  h1 { font-family:'Poppins', sans-serif; font-weight:700; font-size:2rem; margin:20px 0; text-align: center; color: #007bff; }
+  /* Hostel image container */
+  #hostelDisplay {
+    display:flex; justify-content:center; align-items:center;
+    background:#eee; 
+    border-radius:8px; 
+    margin-bottom:20px; 
+    width:100%; 
+    height:150px; /* fixed height for consistent display */
+    overflow: hidden;
+  }
+  #hostelDisplay img {
+    max-height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain; /* maintains aspect ratio without distortion */
+  }
+  /* Form styles */
+  form { display:flex; flex-direction:column; align-items: center; }
+  label { width:100%; max-width:400px; margin-top:10px; font-weight:600; }
+  select, input[type="text"], input[type="number"] {
+    width:100%; max-width:400px; padding:12px; margin-top:4px; border:1.5px solid #452B1F; border-radius:8px; font-size:1rem;
+  }
+  button[type="submit"] {
+    margin-top:20px; background:#452B1F; color:#fff; border:none; border-radius:20px; padding:12px 32px; font-size:1.1rem; cursor:pointer; transition:background 0.2s;
+  }
+  button[type="submit"]:hover { background:#ff4d4d; }
+  /* Footer styles (full width, fixed at bottom) */
+  .footer {
+    background:#007bff; /* blue */
+    color:#fff;
+    text-align:center;
+    padding:24px 0 16px 0;
+    position:fixed; bottom:0; width:100%;
+    box-shadow:0 -4px 12px rgba(0,0,0,0.2);
+    font-family:'Poppins', sans-serif;
+  }
+  .footer-content {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:30px;
+    margin-bottom:20px;
+  }
+  .footer-column {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    max-width:200px;
+  }
+  .footer-column i {
+    font-size:2rem;
+    margin-bottom:8px;
+  }
+  .footer-column a {
+    font-size:1rem;
+    color:#fff;
+    text-decoration:none;
+  }
+  .footer-column a:hover { text-decoration:underline; }
+  /* Social icons */
+  .social-icons {
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    margin-bottom:10px;
+  }
+  .social-icons a {
+    color:#fff;
+    font-size:1.5rem;
+    transition: color 0.3s;
+  }
+  .social-icons a:hover { color:#cce5ff; }
+  /* Responsive adjustments */
+  @media(max-width:768px){
+    body { flex-direction: column; }
+    .container { margin:20px; padding:20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>HOSTELHUB</h1>
+    <h1>Payment</h1>
+    <div id="hostelDisplay">
+      <!-- Image will be inserted here -->
+    </div>
+    <form id="paymentForm">
+        <label>Mobile Money Network:</label>
+        <select id="network" required>
+            <option value="">Select Network</option>
+            <option value="MTN">MTN</option>
+            <option value="Airtel">Airtel</option>
+        </select>
+        <label>Country Code:</label>
+        <select id="countryCode" required>
+            <option value="+256">Uganda (+256)</option>
+            <option value="+254">Kenya (+254)</option>
+            <option value="+255">Tanzania (+255)</option>
+        </select>
+        <label>Phone Number:</label>
+        <input type="text" id="phoneNumber" placeholder="Phone Number" required />
+        <label>Amount:</label>
+        <input type="number" id="amount" placeholder="Amount" required />
+        <button type="submit">Complete Payment</button>
+    </form>
+    <div id="paymentSuccess" style="display:none; color:green; font-weight:bold; margin-top:12px;"></div>
+</div>
+<!-- Footer with contact info and social links -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <i class="fas fa-phone"></i>
+      <a href="tel:0773252005">Call Us: 0773252005</a>
+    </div>
+    <div class="footer-column">
+      <i class="fas fa-envelope"></i>
+      <a href="mailto:info@hostelhub.com">Email: info@hostelhub.com</a>
+    </div>
+    <div class="footer-column">
+      <i class="fas fa-map-marker-alt"></i>
+      <a href="https://www.google.com/maps/search/123+Hostel+St,+City,+Country" target="_blank" rel="noopener">123 Hostel St, City, Country</a>
+    </div>
+  </div>
+  <div class="social-icons">
+    <a href="https://facebook.com/yourpage" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://wa.me/0773252005" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
+  <p>&copy; 2025 HostelHub. Glowing with light ✨</p>
+</footer>
+
+<!-- Font Awesome CDN for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<script>
+  // Load hostel info from localStorage
+window.onload = function() {
+  const hostelName = localStorage.getItem('payHostelName') || 'Unknown Hostel';
+  const hostelImg = localStorage.getItem('payHostelImg') || '1 (2).jpg';
+  const displayDiv = document.getElementById('hostelDisplay');
+  // create the image element
+  const img = document.createElement('img');
+  img.src = hostelImg;
+  img.alt = hostelName;
+  // Clear previous content and add the image
+  displayDiv.innerHTML = '';
+  displayDiv.appendChild(img);
+};
+
+// Handle Payment Form Submission
+document.getElementById('paymentForm').onsubmit = function(e){
+  e.preventDefault();
+  const hostelName = localStorage.getItem('payHostelName') || 'Unknown Hostel';
+  const hostelImg = localStorage.getItem('payHostelImg') || '1 (2).jpg';
+  const loggedInUser = localStorage.getItem('loggedInUser') || 'N/A';
+  const price = parseInt(localStorage.getItem('payPrice')||'0')||0;
+
+  const payments = JSON.parse(localStorage.getItem('payments') || '[]');
+  const amountVal = parseInt(document.getElementById('amount').value)||0;
+
+  // Save the payment record
+  payments.push({
+    user: loggedInUser,
+    hostel: hostelName,
+    hostelId: localStorage.getItem('payHostelId') ? parseInt(localStorage.getItem('payHostelId')) : null,
+    img: hostelImg,
+    network: document.getElementById('network').value,
+    number: document.getElementById('phoneNumber').value,
+    amount: amountVal,
+    price: price,
+    // Calculate balance after this payment
+    balance: (function(){
+      try{
+        const all=JSON.parse(localStorage.getItem('payments')||'[]');
+        const prev=all.filter(p => (p.user===loggedInUser) && ((p.hostelId && p.hostelId===parseInt(localStorage.getItem('payHostelId')))) || (p.hostel===hostelName));
+        const totalPrev=prev.reduce((s,p)=>s+(parseInt(p.amount,10)||0),0);
+        return Math.max(0, price - (totalPrev + amountVal));
+      } catch(e){ return Math.max(0, price - amountVal); }
+    })(),
+    timestamp: new Date().toISOString()
+  });
+  localStorage.setItem('payments', JSON.stringify(payments));
+
+  // Remove the booked hostel from bookings
+  let bookings=JSON.parse(localStorage.getItem('bookings')||'[]');
+  const payIndex=parseInt(localStorage.getItem('payIndex'));
+  if(!isNaN(payIndex) && bookings[payIndex]) bookings.splice(payIndex,1);
+  localStorage.setItem('bookings', JSON.stringify(bookings));
+
+  // Clean up localStorage
+  localStorage.removeItem('payIndex');
+  localStorage.removeItem('payHostelName');
+  localStorage.removeItem('payHostelImg');
+  localStorage.removeItem('payPrice');
+
+  // Show success message and redirect
+  const successDiv=document.getElementById('paymentSuccess');
+  successDiv.style.display='block';
+  successDiv.innerText=`Payment successful for ${hostelName}! Redirecting...`;
+  setTimeout(()=>{ window.location.href='bookings.html'; },2000);
+};
+</script>
+</body>
+</html>
