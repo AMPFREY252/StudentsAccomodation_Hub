@@ -40,6 +40,9 @@ body {
 .sidebar.hidden {
   transform: translateX(-100%);
 }
+.sidebar.show {
+  transform: translateX(0);
+}
 @keyframes gradientBG {
   0% {background-position:0% 50%;}
   50% {background-position:100% 50%;}
@@ -94,10 +97,19 @@ body {
   cursor: pointer;
   z-index: 1001;
 }
+
+/* Main content area */
+.main {
+  margin-left:300px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  width:calc(100% - 300px);
+}
 @media(max-width:1024px){
   .sidebar {
     position: fixed;
-    top:0; left:0;
+    top: 0; left: 0;
     width: 250px;
     height: 100%;
     padding:20px;
@@ -115,21 +127,6 @@ body {
     display: block;
   }
 }
-/* Main content area */
-.main {
-  margin-left:300px;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  width:calc(100% - 300px);
-}
-@media(max-width:1024px){
-  .main {
-    margin-left:0;
-    width:100%;
-  }
-}
-
 /* Header background */
 .header-background {
   position: relative;
@@ -288,27 +285,6 @@ footer {
 .social-icons a:hover {
   color:#ffb84d;
 }
-@media(max-width:1024px){
-  .sidebar {
-    position: fixed;
-    top: 0; left: 0;
-    width: 250px;
-    height: 100%;
-    padding:20px;
-    transform: translateX(-100%);
-  }
-  .sidebar.show {
-    transform: translateX(0);
-  }
-  .main {
-    margin-left:0;
-    width:100%;
-  }
-  /* Show menu icon on small screens */
-  .menu-icon {
-    display: block;
-  }
-}
 @media(max-width:768px){
   /* Adjust header font size for smaller screens */
   .header-content h1 {
@@ -317,6 +293,14 @@ footer {
   /* Reduce footer padding for small screens */
   footer {
     padding:30px 10px;
+  }
+  /* Adjust welcome section font sizes if needed */
+  .welcome-section h2 {
+    font-size:1.5rem;
+  }
+  /* Make sure header background text is responsive */
+  .header-content p {
+    font-size:1rem;
   }
 }
 </style>
