@@ -50,7 +50,7 @@ body {
 }
 .logo {
   font-family:'Poppins', sans-serif;
-  font-size:2.6rem;
+  font-size:2.4rem; /* Slightly smaller for mobile similarity */
   font-weight:800;
   letter-spacing:1.2px;
   display:flex;
@@ -70,7 +70,7 @@ body {
 .nav-menu li a {
   color:#fff;
   font-weight:500;
-  font-size:1.1rem;
+  font-size:1rem; /* Slightly smaller for mobile */
   padding:10px 15px;
   display:flex;
   align-items:center;
@@ -92,19 +92,10 @@ body {
   position: fixed;
   top: 20px;
   left: 20px;
-  font-size: 1.8rem;
+  font-size: 2rem; /* Slightly bigger for clarity */
   color: #000;
   cursor: pointer;
   z-index: 1001;
-}
-
-/* Main content area */
-.main {
-  margin-left:300px;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  width:calc(100% - 300px);
 }
 @media(max-width:1024px){
   .sidebar {
@@ -127,6 +118,21 @@ body {
     display: block;
   }
 }
+/* Main content area */
+.main {
+  margin-left:300px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  width:calc(100% - 300px);
+}
+@media(max-width:1024px){
+  .main {
+    margin-left:0;
+    width:100%;
+  }
+}
+
 /* Header background */
 .header-background {
   position: relative;
@@ -150,16 +156,15 @@ body {
 }
 .header-content {
   position: relative;
-  z-index:1;
 }
 .header-content h1 {
   font-family:'Poppins', sans-serif;
-  font-size:3.5rem;
+  font-size:2.5rem; /* Smaller for mobile similar to university site */
   font-weight:700;
   margin-bottom:10px;
 }
 .header-content p {
-  font-size:1.4rem;
+  font-size:1.2rem; /* Slightly smaller for mobile */
   font-weight:500;
   max-width:800px;
   margin:0 auto;
@@ -197,7 +202,7 @@ body {
 .welcome-section h2 {
   font-family:'Poppins', sans-serif;
   font-weight:700;
-  font-size:1.8rem;
+  font-size:1.5rem; /* Smaller for mobile */
   margin-bottom:8px;
 }
 .welcome-section p {
@@ -288,20 +293,20 @@ footer {
 @media(max-width:768px){
   /* Adjust header font size for smaller screens */
   .header-content h1 {
-    font-size:2.2rem;
+    font-size:2rem; /* Smaller */
   }
-  /* Reduce footer padding for small screens */
-  footer {
-    padding:30px 10px;
-  }
-  /* Adjust welcome section font sizes if needed */
-  .welcome-section h2 {
-    font-size:1.5rem;
-  }
-  /* Make sure header background text is responsive */
   .header-content p {
     font-size:1rem;
   }
+  /* Footer adjustments for small screens */
+  footer {
+    padding:30px 10px;
+  }
+  /* Welcome section font sizes */
+  .welcome-section h2 {
+    font-size:1.3rem;
+  }
+  /* Adjust header background text container if needed */
 }
 </style>
 </head>
@@ -395,7 +400,7 @@ menuToggle.onclick = () => {
   sidebar.classList.toggle('show');
 };
 
-// Optional: close the menu when clicking outside
+// Close sidebar when clicking outside
 document.addEventListener('click', (e) => {
   if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
     sidebar.classList.remove('show');
