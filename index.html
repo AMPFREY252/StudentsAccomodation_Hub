@@ -1,466 +1,624 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>HostelHub - Mbarara</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap" />
-<!-- Font Awesome CDN for Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HOSTEL HUB.COM</title>
 <style>
-/* Reset & Basic Styles */
-* { margin:0; padding:0; box-sizing:border-box; }
-html, body {
-  height: 100%;
-  font-family:'Roboto', sans-serif;
-  background:#f3ecec;
-  color:#222;
-  display:flex;
-  flex-direction:column;
-  overflow-x:hidden;
-  position: relative;
+:root {
+  --must-blue: #00247d;
+  --must-yellow: #ffd700;
+  --must-white: #ffffff;
+  --text-dark: #001744;
+  --must-green: #052e05;
 }
 
-/* Container for the body image, centered with equal gaps */
-.body-image-container {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background: var(--must-white);
+  color: var(--text-dark);
+}
+
+/* ===== TOP BAR ===== */
+.top-bar {
+  background: var(--must-blue);
+  color: var(--must-white);
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  padding: 20px;
-  margin-left: 340px; /* offset from sidebar for clarity */
-  box-sizing: border-box;
-  z-index: 0;
+  padding: 6px 50px;
+  font-size: 0.9rem;
 }
-.body-image-container img {
-  max-width: 80%;
-  height: auto;
-  border: 4px solid #FFD700;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  margin: 0 auto;
-  display: block;
+.top-links a {
+  color: var(--must-white);
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: 500;
 }
+.top-links a:hover { text-decoration: underline; }
 
-/* Remove description overlay since you decided to remove it */
-
-/* Gold Separator */
-.gold-separator {
-  width: 100%;
-  height: 8px;
-  background-color: #FFD700;
-  position: relative;
-  z-index: 10;
+/* ===== HEADER ===== */
+header {
+  background: var(white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 50px;
+  border-bottom: 4px solid var(--must-yellow);
 }
-
-/* Sections with gold borders */
-section, aside {
-  border: 4px solid #FFD700;
-  box-sizing: border-box;
-}
-
-/* Sidebar styles */
-.sidebar {
-  position:fixed;
-  top:0; left:0;
-  width:300px;
-  height:100vh;
-  background: #006400;
-  padding:30px 20px;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:30px;
-  box-shadow:2px 0 15px rgba(0,0,0,0.4);
-  z-index: 999;
-  border: 4px solid #FFD700;
-  transition: transform 0.3s ease;
-}
-
-/* Sidebar hidden on small screens when toggled */
-.sidebar.hidden {
-  transform: translateX(-100%);
-}
-
-/* Logo styles */
 .logo {
-  font-family:'Poppins', sans-serif;
-  font-size:2.6rem;
-  font-weight:800;
-  letter-spacing:1.2px;
-  display:flex;
-  align-items:center;
-  color:#fff;
-}
-.logo i {
-  margin-right:10px;
-  font-size:2rem;
-}
-
-/* Navigation menu styles */
-.nav-menu {
-  list-style:none;
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  width:100%;
-}
-.nav-menu li a {
-  color:#fff;
-  font-weight:500;
-  font-size:1.1rem;
-  padding:10px 15px;
-  display:flex;
-  align-items:center;
-  border-radius:8px;
-  transition:background 0.3s, transform 0.2s;
-  text-decoration:none;
-}
-.nav-menu li a:hover {
-  background:rgba(255,255,255,0.2);
-  transform:translateX(3px);
-}
-.nav-menu li a i {
-  margin-right:10px;
-}
-
-/* Main layout */
-.main {
-  margin-left:340px;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  width: calc(100% - 340px);
-  min-height: 0;
-  position: relative;
-  padding-bottom: 150px;
-}
-
-/* Header background styles */
-.header-background {
-  position: relative;
-  background-image: url('kihumurohallls.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 80%;
-  max-width: 600px;
-  height: 300px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #00008B;
-  border-radius: 20px;
-  border: 4px solid #FFD700;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-.header-background::after {
-  content:"";
-  position:absolute;
-  top:0; left:0; right:0; bottom:0;
-  background:rgba(0,0,0,0.4);
-  border-radius:20px;
-}
-.header-content {
-  position: relative;
-  z-index:1;
-  text-align:center;
-  color:#fff;
-}
-.header-content h1 {
-  font-family:'Poppins', sans-serif;
-  font-size:2.5rem;
-  font-weight:700;
-  margin-bottom:10px;
-}
-.header-content p {
-  font-size:1rem;
-  font-weight:500;
-  max-width:800px;
-  margin:0 auto;
-}
-
-/* Welcome overlay styles (unchanged) */
-.welcome-section {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #003366;
-  padding: 10px 20px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  color:#fff;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  border: 4px solid #FFD700;
-  max-height: 180px;
-  overflow: auto;
+  gap: 25px;
 }
-.welcome-logo {
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  overflow:hidden;
-  border: 2px solid #fff;
-  background-color: #fff;
-  display:flex;
+.logo-circle {
+  width: 160px; /* Increased logo size */
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom:8px;
+  background: var(--must-white);
+  
 }
-.welcome-logo img {
-  width: 50px;
-  height: 50px;
+.logo-circle img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 50%;
 }
-.welcome-section h2 {
-  font-family:'Poppins', sans-serif;
-  font-weight:700;
-  font-size:1.2rem;
-  margin-bottom:6px;
+.logo-text h1 {
+  margin: 0;
+  font-size: 3.6rem;
+  color: var(--must-blue);
 }
-.welcome-section p {
-  font-family:'Poppins', sans-serif;
-  font-weight:500;
-  font-size:0.8rem;
-  margin-bottom:8px;
-  text-align:center;
-}
-.search-wrapper {
-  display:flex;
-  align-items:center;
-  margin-top:8px;
-  width:100%;
-  max-width:600px;
-  padding:0 10px;
-}
-.search-input {
-  flex:1;
-  padding:10px 16px;
-  border-radius:30px;
-  border:none;
-  outline:none;
-  font-size:1rem;
-  background:linear-gradient(90deg,#fff,#fffbe6);
-  box-shadow:0 0 10px #ff6f61, 0 0 20px #ffb347;
-}
-.search-btn {
-  background:none;
-  border:none;
-  margin-left:10px;
-  cursor:pointer;
-}
-.search-btn svg {
-  width:20px;
-  height:20px;
-  stroke:#452B1F;
+.logo-text p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--must-yellow);
+  font-weight: 600;
 }
 
-/* Footer styles (unchanged) */
-footer {
-  width:100%;
-  background: linear-gradient(135deg,hsl(220, 95%, 30%), #00008B, hsl(220, 95%, 30%), hsl(220, 95%, 30%));
-  background-size:400% 400%;
-  animation: gradientBG 15s ease infinite;
-  color:#fff;
-  text-align: center;
-  padding:40px 20px;
-  font-size:1.1rem;
-  font-family:'Poppins', sans-serif;
-  font-weight:600;
-  position:fixed;
-  bottom:0;
-  left:0;
-  border-top:4px solid #FFD700;
-  box-sizing: border-box;
+/* ===== NAVIGATION ===== */
+nav {
+  background: var(--must-blue);
 }
-.footer-info {
-  display:flex;
-  flex-wrap:wrap;
+nav ul {
+  list-style: none;
+  display: flex;
   justify-content: center;
-  gap:30px;
-  margin-bottom:20px;
+  margin: 0;
+  padding: 0;
 }
-.footer-column {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+nav li { position: relative; }
+nav a {
+  color: var(--must-white);
+  display: block;
+  padding: 14px 22px;
+  text-decoration: none;
+  font-weight: 600;
 }
-.footer-column i {
-  font-size:2rem;
-  margin-bottom:8px;
+nav a:hover {
+  background: var(--must-yellow);
+  color: var(--must-blue);
 }
-.footer-column a {
-  color:#fff;
-  font-size:1rem;
-  text-decoration:none;
-}
-.social-icons {
-  display:flex;
-  gap:15px;
-}
-.social-icons a {
-  color:#fff;
-  font-size:1.5rem;
-  transition:color 0.3s;
-}
-.social-icons a:hover {
-  color:#ffb84d;
-}
-/* Responsive menu icon styles */
-.menu-icon {
+
+/* Dropdown */
+nav ul ul {
+  position: absolute;
+  background: var(--must-blue);
+  top: 100%;
+  left: 0;
   display: none;
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  width: 40px;
-  height: 40px;
-  flex-direction: column;
-  justify-content: space-around;
-  cursor: pointer;
-  z-index: 1001;
+  min-width: 200px;
 }
-.menu-icon div {
+nav ul li:hover > ul { display: block; }
+nav ul ul a {
+  padding: 12px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  background: linear-gradient(rgba(0,36,125,0.8), rgba(0,36,125,0.8)), url('https://picsum.photos/1200/400?random=2') center/cover no-repeat;
+  color: var(--must-white);
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Light Green Animated Line */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 70px;
+  left: -100%;
+  width: 80%;
+  height: 50px;
+  background: var(--must-green);
+  border-radius: 5px;
+  box-shadow: 0 0 15px var(--must-green);
+  animation: slideLine 3s ease-out forwards, glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes slideLine {
+  from { left: -100%; }
+  to { left: 10%; }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px var(--must-green); }
+  to { box-shadow: 0 0 25px var(--must-green); }
+}
+
+.hero h2 {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
+.hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== SLIDER ===== */
+.slider {
+  position: relative;
+  max-width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+.slide {
+  position: absolute;
   width: 100%;
-  height: 4px;
-  background-color: #FFD700; /* gold/yellow border */
-  border-radius: 2px;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
-/* Show menu icon on small screens */
-@media(max-width: 768px){
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-  }
-  .sidebar.show {
-    transform: translateX(0);
-  }
-  .menu-icon {
-    display: flex;
-  }
+.slide.active { opacity: 1; }
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
+.slider .caption {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,36,125,0.8);
+  color: var(--must-white);
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.3);
+  color: var(--must-white);
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  border-radius: 50%;
+}
+.slider-btn:hover { background: rgba(0,0,0,0.5); }
+.prev { left: 20px; }
+.next { right: 20px; }
+
+/* ===== ANNOUNCEMENTS ===== */
+.announcements {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 50px;
+  flex-wrap: wrap;
+}
+.announcements .box {
+  background: #f8f8f8;
+  border-left: 6px solid var(--must-yellow);
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+.announcements h3 {
+  color: var(--must-blue);
+  font-size: 1.2rem;
+}
+.announcements p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.announcements small {
+  color: #777;
+}
+
+/* ===== QUICK LINKS ===== */
+.quick-links {
+  background: var(--must-blue);
+  color: var(--must-white);
+  padding: 40px 20px;
+  text-align: center;
+}
+.quick-links h2 {
+  color: var(--must-yellow);
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+}
+.quick-links a {
+  display: inline-block;
+  color: var(--must-white);
+  background: rgba(255,255,255,0.1);
+  padding: 12px 18px;
+  margin: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.quick-links a:hover {
+  background: var(--must-yellow);
+  color: var(--must-blue);
+}
+
+/* ===== EVENTS ===== */
+.events {
+  padding: 50px 20px;
+  text-align: center;
+}
+.events h2 {
+  color: var(--must-blue);
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+.event-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.event {
+  width: 260px;
+  border: 1px solid #ddd;
+  border-top: 6px solid var(--must-yellow);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: left;
+}
+.event h3 {
+  color: var(--must-blue);
+  font-size: 1.1rem;
+}
+.event p {
+  font-size: 0.9rem;
+  color: #333;
+}
+.event small {
+  color: #666;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--must-blue);
+  color: var(--must-white);
+  text-align: center;
+  padding: 25px;
+  margin-top: 60px;
+  font-weight: 500;
+}
+footer a {
+  color: var(--must-yellow);
+  text-decoration: none;
+}
+footer a:hover { text-decoration: underline;
+ }
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #0056b3; /* Blue inside color */
+  border: 2px solid #FFD700; /* Yellow border */
+  border-radius: 30px; /* Rounded edges */
+  padding: 6px 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  padding: 8px 10px;
+  width: 200px;
+}
+
+.search-bar input::placeholder {
+  color: #f0f0f0;
+}
+
+.search-bar button {
+  background: #ebedf0; /* Yellow button */
+  color: #0056b3;      /* Blue icon color */
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.search-bar button:hover {
+  background: #fff;
+  color: #0056b3;
+  box-shadow: 0 0 8px #FFD700;
+}
+
+.search-bar:hover {
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+h6{
+  color: #e9d206;
+  text-align: center;
+  font-weight: 800;
+  font-size: 25px;
+}
+
+
 </style>
+</head>
+
+
+
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="top-bar">
+  <div class="top-links">
+    <a href="admin-login.html">Admin Login</a>
+     <a href="register.html">Register</a>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="logo">
+    <div class="logo-circle">
+      <img src="kihumurohallls.png" alt="University Logo">
+    </div>
+    <div class="logo-text">
+      <h1>HOSTEL HUB</h1>
+      <p>SAFE AND DIRECT</p>
+    </div>
+  </div>
+   <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search hostels or areas...">
+    <button id="searchBtn">🔍</button>
+  </div>
+</header>
+
+ 
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const searchBtn = document.getElementById('searchBtn');
+
+  function performSearch() {
+    const query = searchInput.value.trim();
+    if (query) {
+      window.location.href = `hostels.html?search=${encodeURIComponent(query)}`;
+    }
+  }
+
+  searchBtn.addEventListener('click', performSearch);
+  searchInput.addEventListener('keypress', e => {
+    if (e.key === 'Enter') performSearch();
+  });
+</script>
+
+
+</header>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <ul>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="terms.html">Terms</a></li>
+    <li><a href="bookings.html">Bookings</a></li>
+    <li><a href="profile.html">My Profile</a></li>
+    <li><a href="help.html">Help</a></li>
+    <li><a href="hostels.html">Hostels</a></li>
+    <li><a href="login.html">Login</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <h2>Welcome to Hostel Hub</h2>
+  <p>Empowering Online Bookings, Payments Around Mbarara Society.</p>
+</section>
+
+<!-- ===== SLIDER ===== -->
+<div class="slider">
+  <div class="slide active">
+    <img src="kihumurohallls.png" alt="Campus view">
+    <div class="caption">BOOKINGS BEGIN HERE </div>
+  </div>
+<!--
+  <div class="slide">
+    <img src="images (1).jpeg.jpg" alt="Students at work">
+    <div class="caption">OPEN COMMUNICATION</div>
+  </div>
+  <div class="slide">
+    <img src="images.jpeg.jpg" alt="Research center">
+    <div class="caption">ON LINE BASED SERVICES</div>
+  </div> 
+-->
+  <button class="slider-btn prev" onclick="prevSlide()">&#10094;</button>
+  <button class="slider-btn next" onclick="nextSlide()">&#10095;</button>
+</div>
+
+<!-- ===== ANNOUNCEMENTS ===== -->
+<section class="announcements">
+  <div class="box">
+    <h3>Admin login</h3>
+    <small>only for admins</small>
+    <p>to create accounts <br> post rooms and receive payments<br> re </p>
+  </div>
+  <div class="box">
+    <h3>students and all customers </h3>
+    <small>create accounts</small>
+    <p>Register<br> book <br> make complaints <br> make payments </p>
+  </div>
+  <div class="box">
+    <h3>with iniversity Affairs</h3>
+    <small>the university support</small>
+    <p>MUST approves hostels for students<br> safety and security </p>
+  </div>
+</section>
+
+<!-- ===== QUICK LINKS ===== -->
+<section class="quick-links">
+  <h2>Quick User Access</h2>
+  <a href="register.html">Register</a>
+  <a href="admin-login.html">Admin Login</a>
+  <li><a href="login.html">Login</a></li>
+   <li><a href="profile.html">My Profile</a></li>
+    <li><a href="help.html">Help</a></li>
+
+
+
+</section>
+
+<!-- ===== EVENTS ===== -->
+<section class="events">
+  <h2>Upcoming Hostel Offers</h2>
+  <div class="event-cards">
+    <div class="event">
+      <h3>Need of a Roommet</h3>
+      <small>updates will be made indicating one that needs a Roommet</small>
+    </div>
+    <div class="event">
+      <h3>New Uploaded Hostels</h3>
+      <small> Tap bellow to view</small>
+      <li><a href="hostels.html">Hostels</a></li>
+    </div>
+    <div class="event">
+      <h3>Hostels available for days</h3>
+      <small>the offer depends on how long the hostel willl be available like for a week</small>
+      <p>All Uploads and information will made here in this tab </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  © HostelHub | <a href="about.html">About Us</a> | <a href="contact.html">Contact Us</a></footer>
+  <h6>THANK YOU FOR VISTING US </h6>
+</footer>
+
+
+<!--
+  <style>
+    body {
+      background: #f9f9f9;
+      font-family: Arial, sans-serif;
+    }
+
+    .image-section {
+      width: 100%;
+      overflow: hidden;
+      background: #fff;
+      padding: 20px 0;
+      position: relative;
+    }
+
+    .scroll-row {
+      display: flex;
+      gap: 30px;
+      animation: scrollLeft 20s linear infinite;
+    }
+
+    .scroll-row.reverse {
+      animation: scrollRight 25s linear infinite;
+      margin-top: 30px;
+    }
+
+    .scroll-row img {
+      width: 220px;
+      height: 150px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    @keyframes scrollLeft {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    @keyframes scrollRight {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Hamburger menu icon for small screens -->
-<div class="menu-icon" id="menuToggle" aria-label="Menu" title="Toggle Menu" aria-expanded="false" role="button" tabindex="0">
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
-
-<!-- Centered Image with equal gaps -->
-<div class="body-image-container">
-  <img src="kihumurohallls.png" alt="Main Body Image" />
-</div>
-
-<!-- Gold separator -->
-<div class="gold-separator"></div>
-
-<!-- Sidebar Navigation -->
-<aside class="sidebar" id="sidebar">
- <div class="logo">
-    <i class="fas fa-building"></i>HOSTELHUB
+<section class="image-section">
+   Row 1: moves left 
+  <div class="scroll-row">
+    <img src="hostel1.jpg" alt="Hostel 1">
+    <img src="hostel2.jpg" alt="Hostel 2">
+    <img src="hostel3.jpg" alt="Hostel 3">
+    <img src="hostel4.jpg" alt="Hostel 4">
+    <img src="hostel5.jpg" alt="Hostel 5">
   </div>
-  <ul class="nav-menu">
-    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-    <li><a href="terms.html"><i class="fas fa-file-contract"></i> Terms</a></li>
-    <li><a href="bookings.html"><i class="fas fa-book-open"></i> Bookings</a></li>
-    <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-    <li><a href="help.html"><i class="fas fa-question-circle"></i> Help</a></li>
-    <li><a href="hostels.html"><i class="fas fa-hotel"></i> Hostels</a></li>
-    <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-    <li><a href="admin-login.html"><i class="fas fa-user-shield"></i> Admin Login</a></li>
-    <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
-  </ul>
-</aside>
 
-<!-- Main Content -->
-<main class="main">
-  <!-- Full Page Header -->
-  <section class="header-background">
-    <div class="header-content"></div>
-  </section>
-
-  <!-- Fixed Welcome overlay at top -->
-  <div class="welcome-section" id="welcome">
-    <div class="welcome-logo">
-      <img src="Minimalist_Real_Estate_Logo-removebg-preview (1).png" alt="HostelHub Logo" />
-    </div>
-    <h2>Welcome to Hostel Hub</h2>
-    <p>Your Comfortable & Safe Stay Awaits! Experience Comfort, Security, and Convenience Today!</p>
-    <div class="search-wrapper">
-      <input class="search-input" id="searchInput" type="search" placeholder="Search hostels, locations, types..." />
-      <button class="search-btn" id="searchBtn" aria-label="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#452B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </button>
-    </div>
+  Row 2: moves right
+  <div class="scroll-row reverse">
+    <img src="hostel6.jpg" alt="Hostel 6">
+    <img src="hostel7.jpg" alt="Hostel 7">
+    <img src="hostel8.jpg" alt="Hostel 8">
+    <img src="hostel9.jpg" alt="Hostel 9">
+    <img src="hostel10.jpg" alt="Hostel 10">
   </div>
-</main>
+</section>
+-->
 
-<!-- Footer remains unchanged -->
-<footer>
-  <div class="footer-info">
-    <div class="footer-column">
-      <i class="fas fa-phone"></i>
-      <a href="tel:+256773252005">Call Us: +256773252005</a>
-    </div>
-    <div class="footer-column">
-      <i class="fas fa-envelope"></i>
-      <a href="mailto:ampfreytukwasibwe@gmail.com">Email: ampfreytukwasibwe@gmail.com</a>
-    </div>
-    <div class="footer-column">
-      <i class="fas fa-map-marker-alt"></i>
-      <a href="https://www.google.com/maps/search/mbarara,+City,+Country" target="_blank" rel="noopener">mbarara, Uganda</a>
-    </div>
-  </div>
-  <div class="social-icons">
-    <a href="https://facebook.com/yourpage" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-    <a href="https://wa.me/+256773252005" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-  </div>
-  <p>&copy; 2025 HostelHub. Glowing with light ✨</p>
-</footer>
 
-<!-- Scripts for toggle menu -->
+
 <script>
-const menuToggle = document.getElementById('menuToggle');
-const sidebar = document.getElementById('sidebar');
-
-menuToggle.addEventListener('click', () => {
-  sidebar.classList.toggle('show');
-  menuToggle.setAttribute('aria-expanded', sidebar.classList.contains('show'));
-});
-
-// Optional: allow Enter key to toggle menu
-menuToggle.setAttribute('tabindex', '0');
-menuToggle.setAttribute('role', 'button');
-menuToggle.setAttribute('aria-label', 'Toggle Menu');
-menuToggle.setAttribute('title', 'Toggle Menu');
-menuToggle.addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' '){
-    e.preventDefault();
-    menuToggle.click();
-  }
-});
+let slides = document.querySelectorAll('.slide');
+let current = 0;
+function showSlide(index) {
+  slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+}
+function nextSlide() {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+}
+function prevSlide() {
+  current = (current - 1 + slides.length) % slides.length;
+  showSlide(current);
+}
+setInterval(nextSlide, 5000);
 </script>
+
+
+
+
 </body>
 </html>
